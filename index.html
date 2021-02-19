@@ -47,7 +47,7 @@
                             </div>
                             <div>
                                 <button onclick="matchPin()" type="submit" class="submit-btn">Submit</button>
-                                <p class="action-left">3 try left</p>
+                                <p id="pin-try" class="action-left"><span id="count">4</span> try left</p>
                             </div>
                         </div>
                     </div>
@@ -59,53 +59,7 @@
             </div>
         </div>
 
-        <script>
-            function getPin() {
-                const randomNumber = Math.random() * 10000;
-                const pin = (randomNumber + '').split('.')[0];
-                if (pin.length === 4) {
-                    return pin;
-                } else {
-                    return getPin();
-                }
-
-            }
-            // display generated pin
-            function generatePin() {
-              const pinInput =  document.getElementById('pinInput').value = getPin();
-            }
-
-            // handle calculator
-            document.getElementById('buttonContainer').addEventListener('click', function (event) {
-                const digit = event.target.innerText;
-                if (isNaN(digit)) {
-                    if (digit === 'C') {
-                        const typedInput = document.getElementById('typed-pin');
-                        typedInput.value = '';
-                    }
-                } else {
-                    const typedInput = document.getElementById('typed-pin');
-                    typedInput.value = typedInput.value + digit;
-                }
-            })
-
-            function matchPin() {
-                const inputPin = document.getElementById('pinInput').value;
-                const typedPin = document.getElementById('typed-pin').value;
-                if (inputPin === typedPin) {
-                    displayMatchResult('block', 'none')
-                } else {
-                    displayMatchResult('none', 'block')
-                }
-            }
-
-            function displayMatchResult(correctPin, incorrectPin) {
-                const notify = document.getElementById('correct');
-                notify.style.display = correctPin;
-                const verify = document.getElementById('incorrect');
-                verify.style.display = incorrectPin;
-            }
-        </script>
+        <script src="app.js"></script>
 </body>
 
 </html>
